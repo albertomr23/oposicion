@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oposición Tracker · Escala Ejecutiva CNP</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ── PANTALLA DE BIENVENIDA ───────────────────────────────── -->
+<div id="welcome-screen">
+  <div class="welcome-escudo">🛡️</div>
+  <div class="welcome-cuerpo">Cuerpo Nacional de Policía</div>
+  <div class="welcome-divider"></div>
+  <div class="welcome-title">Bienvenida, opositora</div>
+  <div class="welcome-nombre">Paula Rodríguez</div>
+  <div class="welcome-sub">Escala Ejecutiva · Tracker de preparación</div>
+</div>
+
+<div class="app-layout">
+
+  <!-- ── SIDEBAR ────────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-escudo">🛡️</div>
+      <div class="brand-cuerpo">Cuerpo Nacional de Policía</div>
+      <h1>Oposición Tracker</h1>
+      <p>Escala Ejecutiva</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Principal</div>
+
+      <div class="nav-link" data-page="dashboard">
+        <span class="nav-icon">📊</span>
+        <span>Dashboard</span>
+      </div>
+
+      <div class="nav-link" data-page="nuevo-examen">
+        <span class="nav-icon">➕</span>
+        <span>Registrar examen</span>
+      </div>
+
+      <div class="nav-section-label" style="margin-top:.5rem">Análisis</div>
+
+      <div class="nav-link" data-page="evolucion">
+        <span class="nav-icon">📈</span>
+        <span>Evolución</span>
+      </div>
+
+      <div class="nav-link" data-page="temas">
+        <span class="nav-icon">📚</span>
+        <span>Por temas</span>
+      </div>
+
+      <div class="nav-link" data-page="urgencia">
+        <span class="nav-icon">🚨</span>
+        <span>Ranking urgencia</span>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-avatar">PR</div>
+        <div class="user-info">
+          <div class="user-name">Paula Rodríguez</div>
+          <div class="user-rank">Escala Ejecutiva CNP</div>
+        </div>
+      </div>
+      <button class="btn btn-secondary" id="btn-export">
+        ⬇️ Exportar datos
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ───────────────────────────────────────────────── -->
+  <div class="main-wrap">
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="topbar-badge">CNP</span>
+        <span class="topbar-title">Escala Ejecutiva · 81 temas · acierto +1 · fallo −0.5</span>
+      </div>
+      <div class="topbar-right">
+        <span id="topbar-fecha"></span>
+      </div>
+    </header>
+
+    <main id="main-content"></main>
+  </div>
+
+</div>
+
+<script type="module">
+  import { init } from "./js/app.js";
+
+  // Fecha en topbar
+  const fecha = new Date().toLocaleDateString('es-ES', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  });
+  document.getElementById('topbar-fecha').textContent =
+    fecha.charAt(0).toUpperCase() + fecha.slice(1);
+
+  // Ocultar welcome tras animación
+  setTimeout(() => {
+    const ws = document.getElementById('welcome-screen');
+    if (ws) ws.remove();
+  }, 3700);
+
+  init();
+</script>
+
+</body>
+</html>
